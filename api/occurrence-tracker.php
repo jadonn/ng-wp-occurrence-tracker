@@ -1,17 +1,17 @@
 <?php
 defined( 'ABSPATH' ) or die( 'Access denied' );
 /*
-Plugin Name: Plugin Skeleton
-Description: Skeleton for creating an Angular 4/WordPress plugin.
+Plugin Name: Occurrence Tracker
+Description: Plugin for tracking and reviewing occurrences.
 Version: 1.0
 Author: Jadon Naas
 */
 
-class PluginSkeletonRestController extends WP_REST_Controller{
+class OccurrenceTrackerRestController extends WP_REST_Controller{
 
     public function register_routes(){
         $version = '1';
-        $namespace = '/plugin-skeleton/v' . $version;
+        $namespace = '/occurrence-tracker/v' . $version;
         $base = 'api';
         register_rest_route( $namespace, '/' . $base, array(
             array(
@@ -52,16 +52,16 @@ class PluginSkeletonRestController extends WP_REST_Controller{
 
 }
 
-$plugin_skeleton = new PluginSkeletonRestController();
+$occurrence_tracker = new OccurrenceTrackerRestController();
 
-add_action( 'rest_api_init', [ $plugin_skeleton, 'register_routes' ] );
+add_action( 'rest_api_init', [ $occurrence_tracker, 'register_routes' ] );
 
-add_action( 'admin_menu', 'plugin_skeleton_menu' );
-function plugin_skeleton_menu(){
-    add_menu_page( 'Plugin Skeleton', 'Plugin Skeleton', 'read', 'plugin-skeleton/plugin-skeleton.php', 'view_plugin_skeleton', 'dashicons-thumbs-up', '4.105' );
+add_action( 'admin_menu', 'occurrence_tracker_menu' );
+function occurrence_tracker_menu(){
+    add_menu_page( 'Occurrence Tracker', 'Occurrence Tracker', 'read', 'occurrence-tracker/occurrence-tracker.php', 'view_occurrence_tracker', 'dashicons-thumbs-up', '4.105' );
 }
 
-function view_plugin_skeleton(){
+function view_occurrence_tracker(){
     if( !current_user_can( 'read' ) ){
         wp_die( __( 'You do not have permission to access this page.' ) );
     }

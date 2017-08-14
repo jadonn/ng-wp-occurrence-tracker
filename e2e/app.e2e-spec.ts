@@ -1,10 +1,10 @@
-import { PluginSkeletonPage } from './app.po';
+import { OccurrenceTrackerPage } from './app.po';
 
-describe('plugin-skeleton App', () => {
-  let page: PluginSkeletonPage;
+describe('occurrence-tracker App', () => {
+  let page: OccurrenceTrackerage;
 
   beforeEach(() => {
-    page = new PluginSkeletonPage();
+    page = new OccurrenceTrackerage();
   });
 
   it('should display welcome message', () => {
