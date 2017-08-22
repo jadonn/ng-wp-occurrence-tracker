@@ -27,6 +27,13 @@ class OccurrenceTrackerRestController extends WP_REST_Controller{
                 'permission_callback'   => array( $this, 'check_admin_permission_callback' )
             )
         ));
+        register_rest_route( $namespace, '/' . $base . '/admin/add_occurrence', array(
+            array(
+                'methods'               => 'POST',
+                'callback'              => array( $this, 'admin_add_occurrence' ),
+                'permission_callback'   => array( $this, 'admin_add_occurrence_permission_callback' )
+            )
+        ));
     }
         
     public function get_base_route( $request ){
@@ -48,6 +55,42 @@ class OccurrenceTrackerRestController extends WP_REST_Controller{
 
     public function check_admin_permission_callback( $request ){
         return current_user_can( 'read' );
+    }
+
+    public function admin_add_occurrence( $request ){
+        global $wpdb;
+
+        $user_id = $request->get_param( 'userId' );
+        $occurrence_date = $request->get_param( 'occurrenceDate' );
+        $occurrence_value = $request->get_param( 'occurrenceValue' );
+        $reported_by_id = get_current_user_id();
+        $result = $wpdb->insert(
+                        $wpdb->prefix . 'ot_occurrences',
+                        array(
+                                'user_id'           => $user_id,
+                                'day_of_occurrence' => $occurrence_date,
+                                'occurrence_value'  => $occurrence_value,
+                                'reported_by_id'    => $reported_by_id
+                        ),
+                        array(
+                                '%d',
+                                '%s',
+                                '%d',
+                                '%d'
+                        )
+        );
+        if( $result ){
+            $response_data = array( 'success' => true, 'msg' => 'Occurrence saved successfully.' );
+        }else{
+            $response_data = array( 'success' => false, 'msg' => 'There was an error when saving the occurrence.' );
+        }
+        $response = new WP_REST_Response( $response_data, 200 );
+        $response->header( 'Cache-Control', 'no-cache, no-store, must-revalidate', true );
+        return $response;
+    }
+
+    public function admin_add_occurrence_permission_callback( $request ){
+        return current_user_can( 'manage_options' );
     }
 
 }
