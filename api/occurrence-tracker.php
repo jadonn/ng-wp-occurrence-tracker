@@ -80,3 +80,38 @@ function view_occurrence_tracker(){
     echo '<app-root></app-root>';
     echo ob_get_clean();
 }
+
+function install_occurrence_tracker(){
+
+    setup_occurrence_tracker_database();
+
+}
+
+function setup_occurrence_tracker_database(){
+    global $wpdb;
+    $ot_db_version = '0.1';
+
+    $tables_exist = get_option( 'ot_db_version', false );
+    if( $tables_exist === false ){
+        $table_name = $wpdb->prefix . "ot_occurrences";
+        $charset_collate = $wpdb->get_charset_collate();
+
+        $sql_ot = "CREATE TABLE $table_name (
+            id mediumint(9) NOT NULL AUTO_INCREMENT,
+            user_id mediumint(9) NOT NULL,
+            day_of_occurrence date NOT NULL,
+            occurrence_value decimal(3,2) NOT NULL,
+            recorded_by_id mediumint(9) NOT NULL,
+            created_at timestamp DEFAULT CURRENT_TIMESTAMP,
+            updated_at timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            PRIMARY KEY  (id)
+            ) $charset_collate;";
+
+        require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
+        dbDelta( $sql_ot );
+
+        update_option( 'ot_db_version', $ot_db_version );
+    }
+}
+
+register_activation_hook( __FILE__, 'install_occurrence_tracker' );
