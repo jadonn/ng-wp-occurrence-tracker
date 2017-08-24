@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { By } from '@angular/platform-browser';
+
 import { Observable } from 'rxjs/Observable';
 
 import { HttpModule } from '@angular/http';
@@ -40,5 +42,10 @@ describe('AdminListComponent', () => {
 
   it('should be created', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should display the user name', () => {
+    const user = fixture.debugElement.query( By.css( '.user' ) );
+    expect( user.nativeElement.textContent ).toContain( component.users[0].name );
   });
 });
