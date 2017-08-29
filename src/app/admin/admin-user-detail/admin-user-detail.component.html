@@ -15,5 +15,14 @@
         <option value="1.0">1.0</option>
       </select>
     </div>
+    <div class="col-md-2">
+      <button class="btn btn-primary" (click)="saveOccurrence()">Save Occurrence</button>
+    </div>
+  </div>
+  <div class="alert alert-success" role="alert" *ngIf="showSuccessNotification">
+    {{ successNotification }}
+  </div>
+  <div class="alert alert-danger" role="alert" *ngIf="showFailureNotification">
+    {{ failureNotification }}
   </div>
 </form>
