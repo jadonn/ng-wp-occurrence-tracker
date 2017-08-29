@@ -16,8 +16,6 @@ import { AuthService } from './auth.service';
 import { AuthGuardService } from './admin/auth-guard.service';
 import { WindowService } from './window.service';
 import { AdminUserDetailComponent } from './admin/admin-user-detail/admin-user-detail.component';
-import { AdminAddOccurrenceComponent } from './admin/admin-add-occurrence/admin-add-occurrence.component';
-import { AdminAddOccurrenceService } from './admin/admin-add-occurrence/admin-add-occurrence.service';
 
 @NgModule({
   declarations: [
@@ -26,7 +24,6 @@ import { AdminAddOccurrenceService } from './admin/admin-add-occurrence/admin-ad
     AdminListComponent,
     UserListComponent,
     AdminUserDetailComponent,
-    AdminAddOccurrenceComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +31,7 @@ import { AdminAddOccurrenceService } from './admin/admin-add-occurrence/admin-ad
     HttpModule,
     RoutingModule
   ],
-  providers: [ AuthService, AuthGuardService, AdminAddOccurrenceService, AdminListService, WindowService ],
+  providers: [ AuthService, AuthGuardService, AdminListService, WindowService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

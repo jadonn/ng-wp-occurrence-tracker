@@ -4,7 +4,6 @@ import { RouterModule, Routes} from '@angular/router';
 import { AdminComponent } from '../admin/admin.component';
 import { AdminListComponent } from '../admin/admin-list/admin-list.component';
 import { AdminUserDetailComponent } from '../admin/admin-user-detail/admin-user-detail.component';
-import { AdminAddOccurrenceComponent } from '../admin/admin-add-occurrence/admin-add-occurrence.component';
 
 import { UserListComponent } from '../user-list/user-list.component';
 
@@ -17,8 +16,7 @@ const appRoutes: Routes = [
       path: '',
       children: [
         { path: '', component: AdminListComponent },
-        { path: 'user/:id', component: AdminUserDetailComponent },
-        { path: 'add-occurrence', component: AdminAddOccurrenceComponent }
+        { path: 'user/:id', component: AdminUserDetailComponent }
       ]
     }
   ]}

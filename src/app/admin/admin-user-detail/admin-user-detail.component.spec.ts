@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { FormsModule } from '@angular/forms';
+
 import { AdminUserDetailComponent } from './admin-user-detail.component';
 
 describe('AdminUserDetailComponent', () => {
@@ -8,7 +10,8 @@ describe('AdminUserDetailComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminUserDetailComponent ]
+      declarations: [ AdminUserDetailComponent ],
+      imports: [ FormsModule ]
     })
     .compileComponents();
   }));

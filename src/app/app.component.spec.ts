@@ -2,6 +2,7 @@ import { TestBed, async } from '@angular/core/testing';
 
 import { RoutingModule } from './routing/routing.module';
 import { HttpModule } from '@angular/http';
+import { FormsModule } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
 import { AuthService } from './auth.service';
@@ -10,7 +11,6 @@ import { WindowService } from './window.service';
 import { AppComponent } from './app.component';
 import { AdminComponent } from './admin/admin.component';
 import { AdminListComponent } from './admin/admin-list/admin-list.component';
-import { AdminAddOccurrenceComponent } from './admin/admin-add-occurrence/admin-add-occurrence.component';
 import { AdminUserDetailComponent } from './admin/admin-user-detail/admin-user-detail.component';
 import { UserListComponent } from './user-list/user-list.component';
 
@@ -21,11 +21,11 @@ describe('AppComponent', () => {
         AppComponent,
         AdminComponent,
         AdminListComponent,
-        AdminAddOccurrenceComponent,
         AdminUserDetailComponent,
         UserListComponent
       ],
       imports: [
+        FormsModule,
         HttpModule,
         RoutingModule
       ],

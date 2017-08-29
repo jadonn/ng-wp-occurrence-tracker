@@ -1,3 +1,19 @@
-<p>
-  admin-user-detail works!
-</p>
+<form>
+  <div class="form-group">
+    <div class="col-md-2">
+      <label for="dayOfOccurrence">Date of Occurrence:</label>
+    </div>
+    <div class="col-md-8">
+      <input class="form-control" name="dayOfOccurrence" id="dayOfOccurrence" type="date" [(ngModel)]="dayOfOccurrence"/>
+    </div>
+    <div class="col-md-2">
+      <label for="occurrenceValue">Occurrence Value:</label>
+    </div>
+    <div class="col-md-8">
+      <select class="form-control" name="occurrenceValue" id="occurrenceValue" [(ngModel)]="occurrenceValue">
+        <option value="0.5">0.5</option>
+        <option value="1.0">1.0</option>
+      </select>
+    </div>
+  </div>
+</form>
